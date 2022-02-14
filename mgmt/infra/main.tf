@@ -50,6 +50,7 @@ resource "null_resource" "master0-config" {
     inline = [
       "chmod +x /tmp/k3s.sh",
       "/tmp/k3s.sh -m -n master0 -t ${random_string.random.result} -s https://192.168.1.210:6443 -d",
+      "sudo chown user:user /etc/rancher/k3s/k3s.yaml"
     ]
   }
 }
