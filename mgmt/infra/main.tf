@@ -30,17 +30,27 @@ resource "proxmox_vm_qemu" "mgmt-master0" {
     storage = var.storage_pool
     size = var.disk_size
   }
+}
+
+resource "null_resource" "master0-config" {
+  depends_on = [proxmox_vm_qemu.mgmt-master0]
+  connection {
+    type     = "ssh"
+    user     = var.ssh_user
+    private_key = "${file(var.ssh_key)}"
+    host = proxmox_vm_qemu.mgmt-master0.ssh_host
+  }
 
   provisioner "file" {
     source = "scripts/k3s.sh"
     destination = "/tmp/k3s.sh"
+  }
 
-    connection {
-      type     = "ssh"
-      user     = var.ssh_user
-      private_key = "${file(var.ssh_key)}"
-      host = self.ssh_host
-    }
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/k3s.sh",
+      "/tmp/k3s.sh -m -n master0 -t ${random_string.random.result} -s https://192.168.1.210:6443 -d",
+    ]
   }
 }
 
@@ -63,17 +73,27 @@ resource "proxmox_vm_qemu" "mgmt-master1" {
     storage = var.storage_pool
     size = var.disk_size
   }
+}
+
+resource "null_resource" "master1-config" {
+  depends_on = [proxmox_vm_qemu.mgmt-master1, null_resource.master0-config]
+  connection {
+    type     = "ssh"
+    user     = var.ssh_user
+    private_key = "${file(var.ssh_key)}"
+    host = proxmox_vm_qemu.mgmt-master1.ssh_host
+  }
 
   provisioner "file" {
     source = "scripts/k3s.sh"
     destination = "/tmp/k3s.sh"
+  }
 
-    connection {
-      type     = "ssh"
-      user     = var.ssh_user
-      private_key = "${file(var.ssh_key)}"
-      host = self.ssh_host
-    }
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/k3s.sh",
+      "/tmp/k3s.sh -n master1 -t ${random_string.random.result} -s https://192.168.1.210:6443 -d",
+    ]
   }
 }
 
@@ -96,16 +116,31 @@ resource "proxmox_vm_qemu" "mgmt-master2" {
     storage = var.storage_pool
     size = var.disk_size
   }
+}
+
+resource "null_resource" "master2-config" {
+  depends_on = [proxmox_vm_qemu.mgmt-master2, null_resource.master1-config]
+  connection {
+    type     = "ssh"
+    user     = var.ssh_user
+    private_key = "${file(var.ssh_key)}"
+    host = proxmox_vm_qemu.mgmt-master2.ssh_host
+  }
 
   provisioner "file" {
     source = "scripts/k3s.sh"
     destination = "/tmp/k3s.sh"
-
-    connection {
-      type     = "ssh"
-      user     = var.ssh_user
-      private_key = "${file(var.ssh_key)}"
-      host = self.ssh_host
-    }
   }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/k3s.sh",
+      "/tmp/k3s.sh -n master2 -t ${random_string.random.result} -s https://192.168.1.210:6443 -d",
+    ]
+  }
+}
+
+resource "random_string" "random" {
+  length = 16
+  special = false
 }
