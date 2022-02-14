@@ -35,7 +35,7 @@ copy_kubeconfig() {
   export KUBECONFIG=$HOME/.kube/config
   sudo cp $FILE $KUBECONFIG
   sudo chmod 644 $KUBECONFIG
-  echo KUBECONFIG=$KUBECONFIG
+  echo "run 'export KUBECONFIG=$KUBECONFIG'"
 }
 
 export INSTALL_K3S_EXEC="server"
