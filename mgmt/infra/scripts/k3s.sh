@@ -76,9 +76,9 @@ fi
 
 if [ $main -eq 1 ]; then
   echo "[setup main k3s server]"
-  curl -sfL https://get.k3s.io | K3S_TOKEN=$K3S_TOKEN sh -s - server --cluster-init
+  curl -sfL https://get.k3s.io | K3S_TOKEN=$K3S_TOKEN sh -s - server --cluster-init --disable traefik
   # Note: kubevip as alternative to servicelb, --no-deploy servicelb
 elif [[ "$main" -eq 0 ]] && [[ -n "$K3S_TOKEN" ]] && [[ -n "$K3S_URL" ]]; then
   echo "[setup non-main k3s server]"
-  curl -sfL https://get.k3s.io | K3S_TOKEN=$K3S_TOKEN sh -s - server --server "$K3S_URL" --no-deploy traefik
+  curl -sfL https://get.k3s.io | K3S_TOKEN=$K3S_TOKEN sh -s - server --server "$K3S_URL" --disable traefik
 fi
