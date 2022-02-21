@@ -13,6 +13,8 @@ metadata:
   name: istio-base
   namespace: istio-system
 spec:
+  install:
+    createNamespace: true
   interval: 5m
   chart:
     spec:
