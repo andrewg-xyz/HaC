@@ -6,7 +6,8 @@ Helper to update cloud init templates. Currently, no solution has been found to 
 2. provision using terraform
 3. manually perform updates and maintenance
 4. manually convert to template
-5. manually delete the `terraform.tfstate` file to prevent conflicts in future operations
+5. manually rename template on revan to be "ci-ubuntu-template-v*" (the terraform doesn't like the same template name)
+6. manually delete the `terraform.tfstate` file to prevent conflicts in future operations
 
 ## TLDR
 
