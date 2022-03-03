@@ -30,3 +30,24 @@ spec:
         name: neuvector
         namespace: neuvector
       interval: 1m
+  values:
+    registry: docker.io
+    tag: 5.0.0.preview.2
+    controller:
+      image:
+        repository: neuvector/controller.preview
+    enforcer:
+      image:
+        repository: neuvector/enforcer.preview
+    manager:
+      image:
+        repository: neuvector/manager.preview
+    cve:
+      updater:
+        image:
+          repository: neuvector/updater.preview
+          tag: latest
+      scanner:
+        image:
+          repository: neuvector/scanner.preview
+          tag: latest
