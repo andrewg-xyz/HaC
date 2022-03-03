@@ -11,7 +11,7 @@ metadata:
   name: neuvector
   namespace: neuvector
 spec:
-  url: https://github.com/neuvector/neuvector-helm/charts/
+  url: https://neuvector.github.io/neuvector-helm/
   interval: 1m
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
