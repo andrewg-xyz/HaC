@@ -51,3 +51,5 @@ spec:
         image:
           repository: neuvector/scanner.preview
           tag: latest
+      k3s:
+        enabled: true
