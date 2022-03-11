@@ -24,4 +24,4 @@ spec:
         namespace: istio-system
       interval: 1m
   values:
-    networkGateway: false
+    networkGateway: NONE
