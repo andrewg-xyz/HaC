@@ -23,3 +23,5 @@ spec:
         name: istio-gateway
         namespace: istio-system
       interval: 1m
+    values:
+      networkGateway: false
