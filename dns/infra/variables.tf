@@ -48,12 +48,6 @@ variable "os_type" {
   default = "cloud-init"
 }
 
-variable "dns_servers" {
-  description = "DNS server address"
-  type = string
-  default = "192.168.1.198 192.168.1.199"
-}
-
 variable "user_secret" {
   description = "User secret"
   type = string

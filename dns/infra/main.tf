@@ -21,7 +21,6 @@ resource "proxmox_vm_qemu" "dns01" {
   memory = var.memory
   cores = var.cores
   os_type   = var.os_type
-  nameserver = var.dns_servers
   sshkeys = var.ssh_key_public
   ciuser = var.ssh_user
   cipassword = var.user_secret
@@ -74,7 +73,6 @@ resource "proxmox_vm_qemu" "dns02" {
   memory = var.memory
   cores = var.cores
   os_type   = var.os_type
-  nameserver = var.dns_servers
   sshkeys = var.ssh_key_public
   ciuser = var.ssh_user
   cipassword = var.user_secret
