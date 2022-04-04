@@ -1,8 +1,14 @@
 # HaC
-Homelab provisioning. Proxmox infrastructure provisioning. Using [Telmate Terraform Provider](https://github.com/Telmate/terraform-provider-proxmox). Various implementations for resource configuration.
+
+Homelab as Code (mostly, kinda)
+
+- Using [Telmate Terraform Provider](https://github.com/Telmate/terraform-provider-proxmox) for infrastructure on [ProxmoxVE](https://www.proxmox.com/en/proxmox-ve).
 
 ## Repository Structure
-Each folder is for a unique resource group and are executed independently. Within each resource group is a .env file containing environment specific values or secrets.
+Root Directories: NN<name> (i.e. 01dns) indicating order of desired deployment of unique resource groups. 99*** folders are templates or samples
+Within each resource group, the folder follows this general convention:
+- infra folder with terraform and a .env for special values
+- cluster folder with kubernetes things
 
 ## Infrastructure
 ### Quick Start
