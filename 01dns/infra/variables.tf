@@ -68,18 +68,13 @@ variable "disk_size" {
   default = "75G"
 }
 
-variable "ci_ip_wg0" {
-  description = "IP of wg0"
-  type = string
-}
-
 variable "ci_ip_01" {
-  description = "IP of wg1"
+  description = "IP of resource 01"
   type = string
 }
 
 variable "ci_ip_02" {
-  description = "IP of wg1"
+  description = "IP of resource 02"
   type = string
 }
 

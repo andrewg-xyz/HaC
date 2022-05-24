@@ -73,3 +73,13 @@ variable "disk_size" {
   type = string
   default = "75G"
 }
+
+variable "ci_ip_01" {
+  description = "IP of resource 01"
+  type = string
+}
+
+variable "ci_gw" {
+  description = "Network Gateway"
+  type = string
+}

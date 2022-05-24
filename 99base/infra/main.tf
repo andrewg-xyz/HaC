@@ -14,7 +14,7 @@ provider "proxmox" {
 resource "proxmox_vm_qemu" "node01" {
   name = "node01"
   target_node = "bane|revan"
-  ipconfig0 = "ip=192.168.1.XXX/24,gw=192.168.1.1"
+  ipconfig0 = "ip=${var.ci_ip_01}/24,gw=${var.ci_gw}"
   agent = var.qemu_agent
   clone = var.clone_template
   memory = var.memory
