@@ -100,7 +100,7 @@ resource "null_resource" "kv1-config" {
 
 resource "proxmox_vm_qemu" "kv2" {
   name = "k3s2"
-  target_node = "maul"
+  target_node = "bane"
   ipconfig0 = "ip=${var.ci_ip_03}/24,gw=${var.ci_gw}"
   agent = var.qemu_agent
   clone = var.clone_template
