@@ -1,7 +1,7 @@
 variable "memory" {
   description = "Memory for each node"
   type        = string
-  default     = "8192"
+  default     = "4096"
 }
 
 variable "cores" {
@@ -66,4 +66,24 @@ variable "storage_pool" {
 variable "disk_size" {
   type = string
   default = "75G"
+}
+
+variable "ci_ip_wg0" {
+  description = "IP of wg0"
+  type = string
+}
+
+variable "ci_ip_01" {
+  description = "IP of wg1"
+  type = string
+}
+
+variable "ci_ip_02" {
+  description = "IP of wg1"
+  type = string
+}
+
+variable "ci_gw" {
+  description = "Network Gateway"
+  type = string
 }

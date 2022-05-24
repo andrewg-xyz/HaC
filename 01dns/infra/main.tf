@@ -15,7 +15,7 @@ provider "proxmox" {
 resource "proxmox_vm_qemu" "dns01" {
   name = "dns01"
   target_node = "bane"
-  ipconfig0 = "ip=192.168.1.198/24,gw=192.168.1.1"
+  ipconfig0 = "ip=${var.ci_ip_01}/24,gw=${var.ci_gw}"
   agent = var.qemu_agent
   clone = var.clone_template
   memory = var.memory
@@ -67,7 +67,7 @@ resource "proxmox_vm_qemu" "dns01" {
 resource "proxmox_vm_qemu" "dns02" {
   name = "dns02"
   target_node = "revan"
-  ipconfig0 = "ip=192.168.1.199/24,gw=192.168.1.1"
+  ipconfig0 = "ip=${var.ci_ip_02}/24,gw=${var.ci_gw}"
   agent = var.qemu_agent
   clone = var.clone_template
   memory = var.memory
