@@ -1,4 +1,7 @@
 # HaC
+----
+Deprecated: using [harvestor-hac](https://github.com/andrewsgreene/harvestor-hac.git) instead. I kept running into proxmox issues and opted to try something new! :D 
+----
 
 Homelab as Code (mostly, kinda)
 
