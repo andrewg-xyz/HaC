@@ -18,6 +18,7 @@ resource "proxmox_vm_qemu" "dns01" {
   ipconfig0 = "ip=${var.ci_ip_01}/24,gw=${var.ci_gw}"
   agent = var.qemu_agent
   clone = var.clone_template
+  full_clone = false
   memory = var.memory
   cores = var.cores
   os_type   = var.os_type
@@ -70,6 +71,7 @@ resource "proxmox_vm_qemu" "dns02" {
   ipconfig0 = "ip=${var.ci_ip_02}/24,gw=${var.ci_gw}"
   agent = var.qemu_agent
   clone = var.clone_template
+  full_clone = false
   memory = var.memory
   cores = var.cores
   os_type   = var.os_type

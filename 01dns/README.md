@@ -19,7 +19,7 @@ certbot certonly --manual --preferred-challenges dns --config-dir=./certs/config
 
 agh web ui > settings > encryption settings
 1. configure as desired
-2. add certs or filepat h
+2. add certs or filepath
 
 ## Refs
 

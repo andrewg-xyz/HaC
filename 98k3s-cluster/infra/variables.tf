@@ -13,7 +13,7 @@ variable "cores" {
 variable "clone_template" {
   description = "Source template to clone"
   type        = string
-  default     = "ci-ubuntu-template"
+  default     = "ci-ubuntu-template-v1"
 }
 
 variable "qemu_agent" {

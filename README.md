@@ -4,6 +4,8 @@ Homelab as Code (mostly, kinda)
 
 - Using [Telmate Terraform Provider](https://github.com/Telmate/terraform-provider-proxmox) for infrastructure on [ProxmoxVE](https://www.proxmox.com/en/proxmox-ve).
 
+**July 2022 NOTE** - The terraform provider is not working :(. However, I'm unsure if it is related to teh provider or an issue with my underlying templates. Once resolved, my next improvement will be to use a local module for the creation of VMs as currently I'm copy/pasting a lot of terraform.
+
 ## Repository Structure
 Root Directories: NN<name> (i.e. 01dns) indicating order of desired deployment of unique resource groups. 99*** folders are templates or samples
 Within each resource group, the folder follows this general convention:
