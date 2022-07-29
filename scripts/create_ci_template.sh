@@ -3,13 +3,17 @@
 node=$1
 id=$2
 
+ubuntu_distro=kinetic
+
+apt-get update
+apt-get install -y libguestfs-tools
+
 cd /tmp
-wget https://cloud-images.ubuntu.com/kinetic/current/kinetic-server-cloudimg-amd64.img
-apt-get install libguestfs-tools -y
-virt-customize -a /tmp/focal-server-cloudimg-amd64.img --install qemu-guest-agent
-virt-customize -a /tmp/focal-server-cloudimg-amd64.img --run-command "echo -n > /etc/machine-id"
+wget https://cloud-images.ubuntu.com/$ubuntu_distro/current/$ubuntu_distro-server-cloudimg-amd64.img
+virt-customize -a /tmp/$ubuntu_distro-server-cloudimg-amd64.img --install qemu-guest-agent
+virt-customize -a /tmp/$ubuntu_distro-server-cloudimg-amd64.img --run-command "echo -n > /etc/machine-id"
 touch /etc/pve/nodes/$node/qemu-server/$id.conf
-qm importdisk $id /tmp/kinetic-server-cloudimg-amd64.img local-lvm
+qm importdisk $id /tmp/$ubuntu_distro-server-cloudimg-amd64.img local-lvm
 qm set $id --scsihw virtio-scsi-pci --scsi0 local-lvm:vm-$id-disk-0
 qm set $id --ide2 local-lvm:cloudinit
 qm set $id --boot c --bootdisk scsi0
