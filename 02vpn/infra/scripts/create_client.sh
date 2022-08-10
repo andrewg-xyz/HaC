@@ -3,7 +3,7 @@
 usage() {
   echo "Usage: WireGuard Client Creation helper script"
   echo "  -i [string_val] Peer ID, must be unique, i.e. Peer1, laptop, etc..."
-  echo "  -a [string_val] Peer IP Address, default 57.174.6.204, this is the IP on the VPN"
+  echo "  -a [string_val] Peer IP Address this is the IP on the VPN"
   echo "  -e [string_val] WireGuard External Address, i.e. vpn.my.domain, 1.2.3.4"
   exit 1
 }

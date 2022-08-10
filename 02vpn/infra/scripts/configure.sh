@@ -76,7 +76,7 @@ cat <<EOT >> /etc/ufw/before.rules
 
 *nat
 :POSTROUTING ACCEPT [0:0]
--A POSTROUTING -o eth0 -j MASQUERADE
+-A POSTROUTING -o ens18 -j MASQUERADE
 COMMIT
 EOT
 
@@ -96,12 +96,12 @@ Address = $WIREGUARD_INTERFACE_ADDR/32
 ListenPort = $WIREGUARD_PORT
 PrivateKey = $SERVER_PRIVATE_KEY
 SaveConfig = true
-PostUp = ufw route allow in on wg0 out on eth0
-PostUp = iptables -t nat -I POSTROUTING -o eth0 -j MASQUERADE
-PostUp = ip6tables -t nat -I POSTROUTING -o eth0 -j MASQUERADE
-PreDown = ufw route delete allow in on wg0 out on eth0
-PreDown = iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
-PreDown = ip6tables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+PostUp = ufw route allow in on wg0 out on ens18
+PostUp = iptables -t nat -I POSTROUTING -o ens18 -j MASQUERADE
+PostUp = ip6tables -t nat -I POSTROUTING -o ens18 -j MASQUERADE
+PreDown = ufw route delete allow in on wg0 out on ens18
+PreDown = iptables -t nat -D POSTROUTING -o ens18 -j MASQUERADE
+PreDown = ip6tables -t nat -D POSTROUTING -o ens18 -j MASQUERADE
 EOT
 
 echo "Starting Wireguard.."
