@@ -6,6 +6,8 @@ usage() {
   echo "  -s [string_val] WireGuard Interface/server Address"
   echo "  -i [string_val] DNS Address, if using DNS Tunneling"
   echo "  -n [string_val] Internal Network CIDR Peer can connect to when VPN connection established (i.e. 10.1.4.1/24)"
+  echo "\n"
+  echo "Example: sudo ./configure -p 51821 -s 192.168.1.230 -i 192.168.1.1 -n 192.168.1.1/24"
   exit 1
 }
 
@@ -109,14 +111,14 @@ systemctl start wg-quick@wg0.service
 systemctl enable wg-quick@wg0.service
 
 # Update 'create_client.sh' helper script
-sed -i -e "s|REPLACE_WIREGUARD_PORT|$WIREGUARD_PORT|" /root/create_client.sh
-sed -i -e "s|REPLACE_NETWORK_CIDR|$NETWORK_CIDR|" /root/create_client.sh
+sed -i -e "s|REPLACE_WIREGUARD_PORT|$WIREGUARD_PORT|" /home/user/create_client.sh
+sed -i -e "s|REPLACE_NETWORK_CIDR|$NETWORK_CIDR|" /home/user/create_client.sh
 if [ -z "$DNS_IP" ]; then
-  sed -i -e "/REPLACE_DNS_LINE/d" /root/create_client.sh
+    sed -i -e "/REPLACE_DNS_LINE/d" /home/user/create_client.sh
 else
-  sed -i -e "s/REPLACE_DNS_LINE/LOCAL_DNS_IP=$DNS_IP/g" /root/create_client.sh
+  sed -i -e "s/REPLACE_DNS_LINE/LOCAL_DNS_IP=$DNS_IP/g" /home/user/create_client.sh
 fi
 
 echo ""
 echo "To create your first client, run the following:"
-echo "/root/create_client.sh"
+echo "/home/user/create_client.sh"

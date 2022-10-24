@@ -5,6 +5,8 @@ usage() {
   echo "  -i [string_val] Peer ID, must be unique, i.e. Peer1, laptop, etc..."
   echo "  -a [string_val] Peer IP Address this is the IP on the VPN"
   echo "  -e [string_val] WireGuard External Address, i.e. vpn.my.domain, 1.2.3.4"
+  echo "\n"
+  echo "Example: sudo ./create_client -i tablet -a 149.45.205.6 -e vpn01.my.domain"
   exit 1
 }
 
