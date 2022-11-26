@@ -7,7 +7,8 @@ Documentation on core/common things.
 [ref](https://fluxcd.io/flux/get-started/)
 
 ```
-source cluster/h8s/flux/.env # contains GITHUB_TOKEN, GITHUB_USER
-flux bootstrap github --owner=andrewsgreene --repository=hac --path=cluster/h8s/flux --personal=true
+source cluster/h8s/.env # contains GITHUB_TOKEN, GITHUB_USER
+flux bootstrap github --owner=${GITHUB_USER} --repository=hac --branch=main --path
+=cluster/h8s --personal
 ```
 
