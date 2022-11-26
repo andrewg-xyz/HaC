@@ -7,9 +7,7 @@ Documentation on core/common things.
 [ref](https://fluxcd.io/flux/get-started/)
 
 ```
-source .env # contains GITHUB_TOKEN, GITHUB_USER
-kubectl create ns flux-system
-# Should be able to, but it fails >>>flux bootstrap github --owner=andrewsgreene --repository=hac --path=cluster/h8s/flux --personal=true
-kubectl apply -k cluster/h8s/flux/flux-system
+source cluster/h8s/flux/.env # contains GITHUB_TOKEN, GITHUB_USER
+flux bootstrap github --owner=andrewsgreene --repository=hac --path=cluster/h8s/flux --personal=true
 ```
 
