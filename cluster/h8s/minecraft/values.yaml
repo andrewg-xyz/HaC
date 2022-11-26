@@ -1,0 +1,7 @@
+minecraftServer:
+  eula: "TRUE"
+  difficulty: normal
+  ops: astroe
+persistence:
+  dataDir:
+    enabled: true

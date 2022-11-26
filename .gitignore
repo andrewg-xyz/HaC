@@ -5,3 +5,4 @@
 .env
 .idea
 .fleet
+.DS_Store
