@@ -9,7 +9,7 @@ Documentation on core/common things.
 ```
 source cluster/h8s/.env # contains GITHUB_TOKEN, GITHUB_USER
 flux bootstrap github --owner=${GITHUB_USER} --repository=hac --branch=main --path
-=cluster/h8s --personalhttps://github.dev/fluxcd/flux2-kustomize-helm-example
+=cluster/h8s --personal
 ```
 
 ### Directory Structure
