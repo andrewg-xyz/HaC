@@ -5,11 +5,10 @@ usage() {
   echo "  -h              help"
   echo "  -c [file]       copy file to all nodes"
   echo "  -k              copy kubeconfig to all nodes"
+  echo "  -s              open shell on all nodes"
+  echo "  -f [path]       path to env file with ipList"
   exit 1
 }
-
-
-source ../.env-z8s
 
 function scp_to_nodes() {
   local file=$1
@@ -21,7 +20,8 @@ function scp_to_nodes() {
 function copy_kubeconfig() {
   FILE=/etc/rancher/k3s/k3s.yaml
   KUBECONFIG=/home/user/cluster-config
-#  ssh ${ipList[0]} "sudo -S cp $FILE $KUBECONFIG"
+  ssh ${ipList[0]} "sudo -S cp $FILE $KUBECONFIG"
+  ssh ${ipList[0]} "sudo -S chown user:user $KUBECONFIG"
   scp ${ipList[0]}:$KUBECONFIG cluster-config
   sed -i'.bak' "s|127.0.0.1|${ipList[0]}|g" cluster-config
 }
@@ -39,8 +39,11 @@ function new_session() {
   tmux split-window -v \; send-keys "ssh ${ipList[7]}" C-m
 }
 
-while getopts "hskc:" o; do
+while getopts "hsf:kc:" o; do
   case "${o}" in
+  f) 
+    source $OPTARG
+    ;;
   c)
     scp_to_nodes $OPTARG
     ;;
@@ -48,7 +51,7 @@ while getopts "hskc:" o; do
     copy_kubeconfig
     ;;
   s)
-    new_session
+    new_session $OPTARG
     ;;
   *)
     usage
