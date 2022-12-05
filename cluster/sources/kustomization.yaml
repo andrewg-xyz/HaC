@@ -4,3 +4,4 @@ namespace: flux-system
 resources:
   - istio.yaml
   - minecraft.yaml
+  - podinfo.yaml
